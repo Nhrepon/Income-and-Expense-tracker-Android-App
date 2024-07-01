@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Thread thread=new Thread(){
             public void run() {
                 try {
-                    sleep(2000);
+                    sleep(1000);
                     startActivity(new Intent(MainActivity.this, Home.class));
                 }catch ( Exception e ) {
                     e.printStackTrace();
