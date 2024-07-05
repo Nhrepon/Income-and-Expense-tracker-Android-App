@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Home extends AppCompatActivity {
 
     TextView balance, addExpense, showExpense, totalExpense, totalIncome, addIncome, showIncome;
+
+    DatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +28,20 @@ public class Home extends AppCompatActivity {
         addIncome=findViewById(R.id.addIncome);
         showIncome=findViewById(R.id.showIncome);
 
+        dbHelper = new DatabaseHelper(this);
 
         addExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputData.expense=true;
+                startActivity(new Intent(Home.this, InputData.class));
+            }
+        });
+
+        addIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputData.expense=false;
                 startActivity(new Intent(Home.this, InputData.class));
             }
         });
@@ -38,6 +50,33 @@ public class Home extends AppCompatActivity {
 
 
 
+        updateUi();
 
     }
+    /////////////////////////////////////////////////////////////////
+public void updateUi(){
+    totalExpense.setText("BDT: " + dbHelper.calculateTotalExpense());
+    totalIncome.setText("BDT: " + dbHelper.calculateTotalIncome());
+    double calculateBalance=dbHelper.calculateTotalIncome() - dbHelper.calculateTotalExpense();
+    balance.setText("BDT: " + calculateBalance );
 }
+////////////////////////////////////////////////////////////////////
+
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        updateUi();
+    }
+
+    ///////////////////////////////////////////////////////////////////
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
+}
+
+

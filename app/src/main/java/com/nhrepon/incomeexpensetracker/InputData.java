@@ -16,6 +16,7 @@ public class InputData extends AppCompatActivity {
     EditText inputAmount, inputDescription;
     Button submitAmount;
     DatabaseHelper dbHelper;
+    public static boolean expense = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,12 @@ public class InputData extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
 
 
+        if(expense==true){
+            inputDataTitle.setText("Input Expense Data");
+        }else {
+            inputDataTitle.setText("Input Income Data");
+        }
+
         submitAmount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,11 +45,19 @@ public class InputData extends AppCompatActivity {
                 String sDescription = inputDescription.getText().toString();
                 double amount = Double.parseDouble(sAmount);
 
-                dbHelper.addExpense(amount, sDescription);
+                if(expense==true) {
+                    dbHelper.addExpense(amount, sDescription);
+                    Toast.makeText(getApplicationContext(), "Expense inserted successfully", Toast.LENGTH_LONG).show();
+                }else{
+                    dbHelper.addIncome(amount, sDescription);
+                    Toast.makeText(getApplicationContext(), "Income inserted successfully", Toast.LENGTH_LONG).show();
+                }
 
-                inputDataTitle.setText("Data inserted successfully");
 
-                Toast.makeText(getApplicationContext(), "Data inserted successfully", Toast.LENGTH_LONG).show();
+
+
+
+                onBackPressed();
             }
         });
 
