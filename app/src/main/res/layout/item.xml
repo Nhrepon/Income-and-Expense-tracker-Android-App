@@ -8,42 +8,74 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:background="@drawable/shadow_bg"
+        android:padding="5dp"
         >
-        <TextView
-            android:id="@+id/itemAmount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Amount: "
-            android:textSize="18sp"
-            android:layout_marginVertical="5dp"
-            />
-        <TextView
-            android:id="@+id/itemDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Description: "
-            android:textSize="18sp"
-            android:layout_marginVertical="5dp"
-
-            />
-        <TextView
-            android:id="@+id/itemTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Time: "
-            android:textSize="18sp"
-            android:layout_marginVertical="5dp"
-
-            />
-        <ImageView
-            android:id="@+id/itemDelete"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/delete_icon"
-            android:backgroundTint="#F44336"
-            android:layout_marginVertical="5dp"
-            />
+            android:orientation="vertical"
+            android:layout_weight="4"
+            >
+            <TextView
+                android:id="@+id/itemAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Amount: "
+                android:textSize="18sp"
+                android:layout_marginVertical="5dp"
+                />
+            <TextView
+                android:id="@+id/itemDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description: "
+                android:textSize="18sp"
+                android:layout_marginVertical="5dp"
+
+                />
+            <TextView
+                android:id="@+id/itemTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Time: "
+                android:textSize="18sp"
+                android:layout_marginVertical="5dp"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            >
+            <ImageView
+                android:id="@+id/itemDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete_icon"
+                android:backgroundTint="#F44336"
+                android:layout_marginVertical="5dp"
+                android:layout_gravity="center"
+
+                />
+            <ImageView
+                android:id="@+id/itemUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/update_icon"
+                android:backgroundTint="#F44336"
+                android:layout_marginVertical="5dp"
+                android:layout_gravity="center"
+
+                />
+        </LinearLayout>
+
+
 
 
     </LinearLayout>

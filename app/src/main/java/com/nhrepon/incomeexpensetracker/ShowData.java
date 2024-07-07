@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -89,7 +90,7 @@ public class dataAdapter extends BaseAdapter{
         TextView itemAmount=dataView.findViewById(R.id.itemAmount);
         TextView itemDescription=dataView.findViewById(R.id.itemDescription);
         TextView itemTime=dataView.findViewById(R.id.itemTime);
-        Button itemDelete=dataView.findViewById(R.id.itemDelete);
+        ImageView itemDelete=dataView.findViewById(R.id.itemDelete);
 
         hashMap=arrayList.get(position);
         String id=hashMap.get("id");
