@@ -14,8 +14,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    db.execSQL("create table expense (id integer primary key autoincrement, amount double, description TEXT, timestamp)");
-    db.execSQL("create table income (id integer primary key autoincrement, amount double, description TEXT, timestamp)");
+    db.execSQL("create table expense (id integer primary key autoincrement, amount double, description TEXT, time double)");
+    db.execSQL("create table income (id integer primary key autoincrement, amount double, description TEXT, time double)");
     }
 
     @Override
@@ -30,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues= new ContentValues();
         contentValues.put("amount", amount);
         contentValues.put("description", description);
+        contentValues.put("time", System.currentTimeMillis());
 
         db.insert("expense", null, contentValues);
 
@@ -40,6 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues= new ContentValues();
         contentValues.put("amount", amount);
         contentValues.put("description", description);
+        contentValues.put("time", System.currentTimeMillis());
 
         db.insert("income", null, contentValues);
 
@@ -78,6 +80,14 @@ public double calculateTotalExpense(){
 
     }
 
+    //////////////////////////////////////////////////////////////
+    public Cursor getAllData(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from expense", null);
+
+        return cursor;
+
+    }
 
 
 
